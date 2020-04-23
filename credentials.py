@@ -5,34 +5,40 @@
 
 first = input("Enter your first name: ")
 last = input("Enter your last name: ")
-def getname():
-    return (first, last);
-list = getname()
-print(list)
 
+def getname():
+    return (first, last)
+other = getname()
+print(other)
 
 uname = (first +"."+ last)
 def username():
-        print(uname)
+        print(uname.lower())
 
-
-def password():
-        print("Please create a new password.")
-        while True:
+def strength():
+    weak = "Password weak"
+    strong = "Password strong"
+    print("Please create a new password.")
+    while True:
+        passwd = input("Create a new password: ")
+        if len(passwd) < 8:
+            print("Fool of a Took! That password is feeble!")
             passwd = input("Create a new password: ")
-            if len(passwd) < 8:
-                print("Fool of a Took! That password is feeble!")
-                passwd = input("Create a new password: ")
-            if len(passwd) > 7:
+        elif len(passwd) > 7:
+            if all(char.islower() for char in passwd) or all(char.isupper() for char in passwd):
+                print(weak)
                 print("The force is strong in this one…")
-                break
-        print("Account configured. Your new email address is", uname + "@marist.edumain()") 
+            elif any(char.isupper () for char in passwd):
+                print(strong)
+                print("The force is strong in this one…")
+        break
+    print("Account configured. Your new email address is", uname + "@marist.edumain()") 
 
 
 def main():
      getname()
      username()
-     password()
+     strength()
 
 main()
 
